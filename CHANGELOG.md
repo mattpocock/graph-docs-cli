@@ -1,5 +1,11 @@
 # graph-docs-cli
 
+## 0.0.8
+
+### Patch Changes
+
+- [`e425b2a`](https://github.com/mattpocock/graph-docs-cli/commit/e425b2ace4d14841144f872e2d6b87aff556d400) Thanks [@mattpocock](https://github.com/mattpocock)! - Fixed a bug where the changed files viewer wasn't working in monorepos
+
 ## 0.0.7
 
 ### Patch Changes
