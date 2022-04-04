@@ -6,12 +6,14 @@
     "graph-docs": "./bin/bin.js"
   },
   "scripts": {
-    "prepare": "husky install && yarn build",
+    "prepare": "husky install",
     "lint": "tsc",
-    "build": "esbuild src/*.ts --outdir=bin --platform=node --format=cjs && esbuild src/devClient.ts --bundle --target=chrome58 --outfile=bin/devClient.js",
+    "build": "preconstruct build && esbuild src/*.ts --outdir=bin --platform=node --format=cjs && esbuild src/devClient.ts --bundle --target=chrome58 --outfile=bin/devClient.js",
     "release": "changeset publish"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-typescript": "^7.16.7",
     "@changesets/changelog-github": "^0.4.4",
     "@changesets/cli": "^2.22.0",
     "@preconstruct/cli": "^2.1.5",
