@@ -1,5 +1,11 @@
 # graph-docs-cli
 
+## 0.0.3
+
+### Patch Changes
+
+- [`91c278a`](https://github.com/mattpocock/graph-docs-cli/commit/91c278a21e30ea1656c4f71e419dd837503a518e) Thanks [@mattpocock](https://github.com/mattpocock)! - Fixed a bug where the bundle wasn't being shipped to npm
+
 ## 0.0.2
 
 ### Patch Changes
