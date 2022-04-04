@@ -3,9 +3,11 @@ import * as path from 'path';
 import { writeFileSync } from 'fs';
 import { getConfig } from './getConfig';
 import { getContentGraph } from './getContentGraph';
+import { chokidarGlob } from './chokidarGlob';
 
 export const getDotfile = async (glob: string, cachePath: string) => {
   const db = await getContentGraph(glob);
+  const allFiles = await chokidarGlob(glob);
 
   const config = await getConfig();
 
@@ -21,7 +23,9 @@ export const getDotfile = async (glob: string, cachePath: string) => {
     .toString()
     .split('\n')
     .map((item) => item.trim())
-    .filter(Boolean)
+    .filter((item) => {
+      return allFiles.includes(path.resolve(process.cwd(), item));
+    })
     .map((item) => path.parse(item).name);
 
   const dotfileText = `
