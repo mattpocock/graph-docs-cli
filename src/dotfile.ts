@@ -1,7 +1,10 @@
+import { execSync } from 'child_process';
+import * as path from 'path';
+import { writeFileSync } from 'fs';
 import { getConfig } from './getConfig';
 import { getContentGraph } from './getContentGraph';
 
-export const getDotfile = async (glob: string) => {
+export const getDotfile = async (glob: string, cachePath: string) => {
   const db = await getContentGraph(glob);
 
   const config = await getConfig();
@@ -11,6 +14,15 @@ export const getDotfile = async (glob: string) => {
     if (!group) return 'black';
     return group.color;
   };
+
+  const changedModules = execSync('git diff --name-only HEAD', {
+    cwd: process.cwd(),
+  })
+    .toString()
+    .split('\n')
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => path.parse(item).name);
 
   const dotfileText = `
     digraph kmap {
@@ -27,15 +39,26 @@ export const getDotfile = async (glob: string) => {
         .join('\n')}
       ${Object.values(db)
         .map((item) => {
-          return `"${item.name}" [color="${getColor(item.name)}",penwidth=2.0]`;
+          return `"${item.name}" [color="${getColor(
+            item.name,
+          )}",penwidth=2.0, margin="0.2,0"]`;
+        })
+        .join('\n')}
+      ${changedModules
+        .map((mod) => {
+          return `"${mod}" [style="filled,bold" fontcolor="white" tooltip="Changed"]`;
         })
         .join('\n')}
     }
   `;
 
-  console.log(
-    `https://dreampuf.github.io/GraphvizOnline/#${encodeURIComponent(
-      dotfileText,
-    )}`,
-  );
+  const dotfilePath = path.resolve(cachePath, 'dotfile.dot');
+
+  const imgPath = path.resolve(cachePath, 'graph.svg');
+
+  writeFileSync(dotfilePath, dotfileText);
+
+  execSync(`dot -Tsvg ${dotfilePath} > ${imgPath}`);
+
+  return { dotfilePath, imgPath };
 };

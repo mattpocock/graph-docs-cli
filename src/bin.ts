@@ -7,18 +7,20 @@ import { getConfig } from './getConfig';
 import { getContentGraph } from './getContentGraph';
 import { getPathTo, getPathToMany } from './getPathTo';
 import { logAndExit } from './logAndExit';
+import * as path from 'path';
+import { startServer } from './startServer';
 
 const program = new Command();
 
 program.version(version);
 
-program
-  .command('dotfile')
-  .description('Create a dotfile view of the entire module graph')
-  .argument('<files>', 'The files to target, expressed as a glob pattern')
-  .action(async (glob: string) => {
-    getDotfile(glob);
-  });
+// program
+//   .command('dotfile')
+//   .description('Create a dotfile view of the entire module graph')
+//   .argument('<files>', 'The files to target, expressed as a glob pattern')
+//   .action(async (glob: string) => {
+//     getDotfile(glob);
+//   });
 
 program
   .command('full-path')
@@ -79,6 +81,17 @@ program
   .argument('<files>', 'The files to target, expressed as a glob pattern')
   .action(async (glob: string) => {
     await getContentGraph(glob);
+  });
+
+program
+  .command('dev')
+  .description('Start a dev server, watching for changes in your content graph')
+  .argument('<files>', 'The files to target, expressed as a glob pattern')
+  .action(async (glob: string) => {
+    startServer(glob, __dirname, {
+      publicPath: './public',
+      port: 3001,
+    });
   });
 
 program.parse(process.argv);
