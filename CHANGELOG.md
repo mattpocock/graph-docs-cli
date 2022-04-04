@@ -1,5 +1,11 @@
 # graph-docs-cli
 
+## 0.0.7
+
+### Patch Changes
+
+- [`c5caf90`](https://github.com/mattpocock/graph-docs-cli/commit/c5caf90bb4c19b2b16041ad44238ecbb1f414b2c) Thanks [@mattpocock](https://github.com/mattpocock)! - Added getConfig to exports
+
 ## 0.0.6
 
 ### Patch Changes
