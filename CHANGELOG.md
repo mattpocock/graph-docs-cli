@@ -1,5 +1,11 @@
 # graph-docs-cli
 
+## 0.0.5
+
+### Patch Changes
+
+- [`6203fd1`](https://github.com/mattpocock/graph-docs-cli/commit/6203fd1cc3b3ed90ceea198c2b5ed309b140a101) Thanks [@mattpocock](https://github.com/mattpocock)! - Fixed a bug where modules that weren't in the glob would end up in changed files
+
 ## 0.0.4
 
 ### Patch Changes
