@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/__tests__/__examples__"
+  ]
+}
