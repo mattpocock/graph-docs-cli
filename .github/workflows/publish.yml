@@ -1,8 +1,8 @@
-name: Make Changelog
+name: Publish
 on:
   push:
     branches:
-      - 'dev'
+      - 'main'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -17,7 +17,6 @@ jobs:
           cache: 'yarn'
 
       - run: yarn
-      - run: yarn lint
       - run: yarn build
       - name: Create Release Pull Request or Publish
         id: changesets
