@@ -1,5 +1,11 @@
 # graph-docs-cli
 
+## 0.0.4
+
+### Patch Changes
+
+- [`dd3c651`](https://github.com/mattpocock/graph-docs-cli/commit/dd3c651f35acf7dcf5f6365a082f4de029607041) Thanks [@mattpocock](https://github.com/mattpocock)! - Fixed a bug where commander wasn't included in dependencies
+
 ## 0.0.3
 
 ### Patch Changes

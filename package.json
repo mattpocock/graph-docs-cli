@@ -1,6 +1,6 @@
 {
   "name": "graph-docs-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/graph-docs-cli.cjs.js",
   "bin": {
     "graph-docs": "./bin/bin.js"
