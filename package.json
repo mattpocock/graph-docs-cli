@@ -8,9 +8,11 @@
   "scripts": {
     "prepare": "husky install && yarn build",
     "lint": "tsc",
-    "build": "esbuild src/*.ts --outdir=bin --platform=node --format=cjs && esbuild src/devClient.ts --bundle --target=chrome58 --outfile=bin/devClient.js"
+    "build": "esbuild src/*.ts --outdir=bin --platform=node --format=cjs && esbuild src/devClient.ts --bundle --target=chrome58 --outfile=bin/devClient.js",
+    "release": "changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.22.0",
     "@preconstruct/cli": "^2.1.5",
     "@types/express": "^4.17.13",
     "@types/node": "^16.0.1",
