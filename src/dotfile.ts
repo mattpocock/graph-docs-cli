@@ -23,8 +23,9 @@ export const getDotfile = async (glob: string, cachePath: string) => {
     .toString()
     .split('\n')
     .map((item) => item.trim())
+    .filter(Boolean)
     .filter((item) => {
-      return allFiles.includes(item);
+      return allFiles.some((file) => item.includes(file));
     })
     .map((item) => path.parse(item).name);
 
