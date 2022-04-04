@@ -1,5 +1,11 @@
 # graph-docs-cli
 
+## 0.0.6
+
+### Patch Changes
+
+- [`81ba672`](https://github.com/mattpocock/graph-docs-cli/commit/81ba672d76c39b34fd2ad5fb4c04f5807e1f6e69) Thanks [@mattpocock](https://github.com/mattpocock)! - Fixed bug where no changed files would show at all
+
 ## 0.0.5
 
 ### Patch Changes
