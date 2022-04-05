@@ -7,6 +7,9 @@ import { chokidarGlob } from './chokidarGlob';
 
 export const getDotfile = async (glob: string, cachePath: string) => {
   const db = await getContentGraph(glob);
+  /**
+   * Relative paths
+   */
   const allFiles = await chokidarGlob(glob);
 
   const config = await getConfig();
@@ -17,17 +20,51 @@ export const getDotfile = async (glob: string, cachePath: string) => {
     return group.color;
   };
 
-  const changedModules = execSync('git diff --name-only HEAD', {
+  /**
+   * Full-length paths
+   */
+  const changedModules1 = execSync('git diff --name-only HEAD', {
     cwd: process.cwd(),
   })
     .toString()
     .split('\n')
-    .map((item) => item.trim())
-    .filter(Boolean)
-    .filter((item) => {
-      return allFiles.some((file) => item.includes(file));
-    })
-    .map((item) => path.parse(item).name);
+    .map((i) => i.trim())
+    .filter(Boolean);
+
+  /**
+   * Relative paths
+   */
+  const allTrackedFiles = execSync('git ls-files', {
+    cwd: process.cwd(),
+  })
+    .toString()
+    .split('\n')
+    .map((i) => i.trim())
+    .filter(Boolean);
+
+  const changedModules = new Set<string>();
+
+  allFiles.forEach((file) => {
+    const fileIsTracked = allTrackedFiles.includes(file);
+
+    if (!fileIsTracked) {
+      changedModules.add(path.parse(file).name);
+    }
+
+    const fileHasChanged = changedModules1.some((changedFile) => {
+      return changedFile.includes(file);
+    });
+
+    if (fileHasChanged) {
+      changedModules.add(path.parse(file).name);
+    }
+  });
+
+  // const changedModules = allFiles
+  //   .filter((item) => {
+  //     return allFiles.some((file) => item.includes(file));
+  //   })
+  //   .map((item) => path.parse(item).name);
 
   const dotfileText = `
     digraph kmap {
@@ -49,7 +86,7 @@ export const getDotfile = async (glob: string, cachePath: string) => {
           )}",penwidth=2.0, margin="0.2,0"]`;
         })
         .join('\n')}
-      ${changedModules
+      ${Array.from(changedModules)
         .map((mod) => {
           return `"${mod}" [style="filled,bold" fontcolor="white" tooltip="Changed"]`;
         })
