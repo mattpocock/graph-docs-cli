@@ -1,5 +1,11 @@
 # graph-docs-cli
 
+## 0.0.9
+
+### Patch Changes
+
+- [`003f0a8`](https://github.com/mattpocock/graph-docs-cli/commit/003f0a8f46b618c53154fe4725f8095660a9bd1b) Thanks [@mattpocock](https://github.com/mattpocock)! - Fixed a bug where untracked files would not be shown as changed on the graph
+
 ## 0.0.8
 
 ### Patch Changes
