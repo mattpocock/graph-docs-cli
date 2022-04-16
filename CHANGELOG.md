@@ -1,5 +1,11 @@
 # graph-docs-cli
 
+## 0.0.11
+
+### Patch Changes
+
+- [#11](https://github.com/mattpocock/graph-docs-cli/pull/11) [`c2e98bd`](https://github.com/mattpocock/graph-docs-cli/commit/c2e98bd723e794b8c4e2ebd9fa6d03297c15c738) Thanks [@mattpocock](https://github.com/mattpocock)! - Fixed a bug where you needed git with at least one commit to run graph-docs dev
+
 ## 0.0.10
 
 ### Patch Changes
