@@ -92,7 +92,7 @@ group: advanced
 
 You'll see the relevant node in the graphviz will turn green.
 
-### Integration
+### Integrations
 
 Currently, there are no custom integrations with docs platforms as part of this package. We should add some!
 
@@ -101,13 +101,15 @@ For the XState docs, we've written a custom integration where we construct pages
 ```md
 # States
 
+<!-- Links to the states.md module -->
 {{ states }}
 
 ## Final States
 
+<!-- Links to the final-states.md module -->
 {{ final-states }}
 ```
 
 (This isn't open-source yet, but will be when we release it.)
 
-But we should offer this as part of `graph-docs`.
+But we should offer this as part of `graph-docs`. Any thoughts appreciated in issues!
