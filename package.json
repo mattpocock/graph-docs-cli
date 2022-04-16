@@ -5,6 +5,10 @@
   "bin": {
     "graph-docs": "./bin/bin.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattpocock/graph-docs-cli.git"
+  },
   "scripts": {
     "prepare": "husky install",
     "lint": "tsc",
