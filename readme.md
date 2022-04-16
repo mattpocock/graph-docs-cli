@@ -63,6 +63,8 @@ This constraint _forces_ you to resolve the circular dependency the way you woul
 - Extracting out the relevant bits to a new module
 - Colocating the modules into one big one (if they cannot be taught separately)
 
+This is also what makes `graph-docs` different from something like [Roam](https://roamresearch.com/)/[Obsidian](https://obsidian.md/). These tools are _fantastic_ for note-taking. But the fact that they allow circular dependencies makes them unoptimized for readers other than their author.
+
 ### Groupings
 
 When your graph gets to 100+ modules, it can be hard to see the wood through the trees. You'll naturally want to start grouping them together.
@@ -102,11 +104,13 @@ For the XState docs, we've written a custom integration where we construct pages
 # States
 
 <!-- Links to the states.md module -->
+
 {{ states }}
 
 ## Final States
 
 <!-- Links to the final-states.md module -->
+
 {{ final-states }}
 ```
 
