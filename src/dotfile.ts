@@ -23,13 +23,17 @@ export const getDotfile = async (glob: string, cachePath: string) => {
   /**
    * Full-length paths
    */
-  const changedModules1 = execSync('git diff --name-only HEAD', {
-    cwd: process.cwd(),
-  })
-    .toString()
-    .split('\n')
-    .map((i) => i.trim())
-    .filter(Boolean);
+  let changedModulesFromGit: string[] = [];
+
+  try {
+    changedModulesFromGit = execSync('git diff --name-only HEAD', {
+      cwd: process.cwd(),
+    })
+      .toString()
+      .split('\n')
+      .map((i) => i.trim())
+      .filter(Boolean);
+  } catch (e) {}
 
   /**
    * Relative paths
@@ -42,29 +46,23 @@ export const getDotfile = async (glob: string, cachePath: string) => {
     .map((i) => i.trim())
     .filter(Boolean);
 
-  const changedModules = new Set<string>();
+  const changedModulesSet = new Set<string>();
 
   allFiles.forEach((file) => {
     const fileIsTracked = allTrackedFiles.includes(file);
 
     if (!fileIsTracked) {
-      changedModules.add(path.parse(file).name);
+      changedModulesSet.add(path.parse(file).name);
     }
 
-    const fileHasChanged = changedModules1.some((changedFile) => {
+    const fileHasChanged = changedModulesFromGit.some((changedFile) => {
       return changedFile.includes(file);
     });
 
     if (fileHasChanged) {
-      changedModules.add(path.parse(file).name);
+      changedModulesSet.add(path.parse(file).name);
     }
   });
-
-  // const changedModules = allFiles
-  //   .filter((item) => {
-  //     return allFiles.some((file) => item.includes(file));
-  //   })
-  //   .map((item) => path.parse(item).name);
 
   const dotfileText = `
     digraph kmap {
@@ -86,7 +84,7 @@ export const getDotfile = async (glob: string, cachePath: string) => {
           )}",penwidth=2.0, margin="0.2,0"]`;
         })
         .join('\n')}
-      ${Array.from(changedModules)
+      ${Array.from(changedModulesSet)
         .map((mod) => {
           return `"${mod}" [style="filled,bold" fontcolor="white" tooltip="Changed"]`;
         })
