@@ -2,7 +2,7 @@ _This is an experimental package - I'm looking forward to your feedback on how t
 
 # Graph Docs CLI
 
-Revolutionise your docs with tools for building a knowledge graph from markdown.
+Revolutionise your docs by building a knowledge graph from markdown.
 
 ![Graph of inter-connected nodes representing XState's docs](./assets/graph.png)
 
