@@ -1,5 +1,11 @@
 # graph-docs-cli
 
+## 0.0.10
+
+### Patch Changes
+
+- [`3bced1e`](https://github.com/mattpocock/graph-docs-cli/commit/3bced1efdecb0664a792503e6189efbdc6aa5dda) Thanks [@mattpocock](https://github.com/mattpocock)! - Added readme
+
 ## 0.0.9
 
 ### Patch Changes
