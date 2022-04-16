@@ -13,7 +13,7 @@ Revolutionise your docs with tools for building a knowledge graph from markdown.
 
 ```yaml
 ---
-deps: [one] # the filename of the module, without its dependency
+deps: [one] # the filename of the module, without the .md extension
 ---
 ```
 
