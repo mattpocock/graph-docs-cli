@@ -1,3 +1,5 @@
+_This is an experimental package - I'm looking forward to your feedback on how to improve it._
+
 # Graph Docs CLI
 
 Revolutionise your docs with tools for building a knowledge graph from markdown.
